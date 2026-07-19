@@ -1,0 +1,18 @@
+name: Keep Supabase project alive
+
+on:
+  schedule:
+    # Runs every 3 days at 06:00 UTC — well under Supabase's ~7-day free-tier
+    # inactivity pause window.
+    - cron: '0 6 */3 * *'
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST endpoint
+        run: |
+          curl -sS -o /dev/null -w "HTTP status: %{http_code}\n" \
+            "https://xitkovwkcsaqsejjesep.supabase.co/rest/v1/" \
+            -H "apikey: sb_publishable_AAXndODMMcUkHGnZlcSPIg_gnCNl7VI"
