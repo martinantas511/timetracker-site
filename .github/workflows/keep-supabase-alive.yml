@@ -2,17 +2,39 @@ name: Keep Supabase project alive
 
 on:
   schedule:
-    # Runs every 3 days at 06:00 UTC — well under Supabase's ~7-day free-tier
-    # inactivity pause window.
-    - cron: '0 6 */3 * *'
+    # Every 2 days at 06:00 UTC — well under Supabase free-tier 7-day pause window
+    - cron: '0 6 */2 * *'
   workflow_dispatch: {}
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
+      - name: Restore project if paused (requires SUPABASE_ACCESS_TOKEN secret)
+        if: ${{ secrets.SUPABASE_ACCESS_TOKEN != '' }}
+        run: |
+          STATUS=$(curl -sS -o /dev/null -w "%{http_code}" \
+            "https://xitkovwkcsaqsejjesep.supabase.co/rest/v1/" \
+            -H "apikey: sb_publishable_AAXndODMMcUkHGnZlcSPIg_gnCNl7VI")
+          echo "REST status: $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "Project may be paused — attempting restore via Management API..."
+            curl -sS -X POST \
+              "https://api.supabase.com/v1/projects/xitkovwkcsaqsejjesep/restore" \
+              -H "Authorization: Bearer ${{ secrets.SUPABASE_ACCESS_TOKEN }}" \
+              -H "Content-Type: application/json"
+            echo "Restore requested. Waiting 60s for project to come up..."
+            sleep 60
+          fi
+
       - name: Ping Supabase REST endpoint
         run: |
-          curl -sS -o /dev/null -w "HTTP status: %{http_code}\n" \
+          HTTP=$(curl -sS -o /dev/null -w "%{http_code}" \
             "https://xitkovwkcsaqsejjesep.supabase.co/rest/v1/" \
-            -H "apikey: sb_publishable_AAXndODMMcUkHGnZlcSPIg_gnCNl7VI"
+            -H "apikey: sb_publishable_AAXndODMMcUkHGnZlcSPIg_gnCNl7VI")
+          echo "HTTP status: $HTTP"
+          if [ "$HTTP" != "200" ]; then
+            echo "WARNING: Supabase returned $HTTP — project may still be paused!"
+            exit 1
+          fi
+          echo "OK — project is alive."
