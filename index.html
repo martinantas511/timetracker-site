@@ -16,45 +16,71 @@
 </head>
 <body>
 <h1>Privacy Policy — TimeTracker</h1>
-<p class="updated">Last updated: 29 June 2026</p>
+<p class="updated">Last updated: 9 November 2026</p>
 
 <p>This Privacy Policy explains how the <strong>TimeTracker</strong> mobile application
 ("the app", "we") handles your data. The app is operated by TimeTracker ("the developer").</p>
 
+<h2>Your account</h2>
+<p>You can start using the app <strong>without creating an account</strong>. In that case the app creates an
+anonymous guest account: your data is stored with us, but it is not linked to an email address. If you
+later sign in with Google or with an email address, your existing data is kept and linked to that account.
+If you log out of a guest account, its data can no longer be accessed.</p>
+<p>Your TimeTracker account is shared with our sibling apps <strong>BudgetTracker</strong> and
+<strong>HabitTracker</strong>: the same sign-in works in all three.</p>
+
 <h2>What data we collect</h2>
-<p>When you create an account and use the app, we store:</p>
 <ul>
-  <li><strong>Account data:</strong> your email address (for sign-in and account recovery).</li>
-  <li><strong>Your content:</strong> the clients, projects, time entries, invoices and settings you create in the app.</li>
+  <li><strong>Account data:</strong> your email address (if you sign in with email or Google), and,
+      if you choose to add them, your name and a profile photo.</li>
+  <li><strong>Google sign-in:</strong> if you use it, Google shares your name and email address with us.
+      We do not receive your Google password or access your other Google data.</li>
+  <li><strong>Your content:</strong> the clients, projects, time entries and invoices you create. Client
+      records can contain the details you enter, such as name, email, address, IBAN and company / tax IDs.</li>
+  <li><strong>Invoice details:</strong> the supplier details you enter for your invoices (name, address,
+      company ID, tax and VAT IDs, IBAN, BIC, VAT settings), stored with your account so they survive a
+      reinstall.</li>
+  <li><strong>Usage events:</strong> to understand where new users get stuck, the app records a small set of
+      anonymous steps in our own database (for example: app opened, account created, first project created,
+      timer started, invoice created, paywall shown, purchase). Each event contains the step name, the app
+      version and a random installation ID created by the app. It contains no content you entered, no
+      location and no advertising ID.</li>
 </ul>
-<p>We do <strong>not</strong> collect your name, location, contacts, photos, or device identifiers
-for advertising. The app contains <strong>no advertising and no third-party analytics or tracking SDKs</strong>.</p>
+<p>We do <strong>not</strong> collect your location, contacts or device identifiers for advertising.
+The app contains <strong>no advertising and no third-party analytics or tracking SDKs</strong>.</p>
 
 <h2>How your data is stored</h2>
 <ul>
-  <li>Your account and content are stored securely in our backend provider <strong>Supabase</strong>
-      (PostgreSQL database with row-level security). Each user can only access their own data.</li>
-  <li>Some preferences (language, Pomodoro and goal settings) are stored <strong>locally on your device</strong> only.</li>
+  <li>Your account, content and usage events are stored in our backend provider <strong>Supabase</strong>
+      (PostgreSQL database in the EU, with row-level security). Each user can only access their own data;
+      usage events cannot be read by any app user.</li>
+  <li>Profile photos are stored in Supabase Storage.</li>
+  <li>Some preferences (language, Pomodoro, goal and reminder settings) are stored <strong>locally on your
+      device</strong> only.</li>
 </ul>
 
 <h2>Payments</h2>
-<p>Pro subscriptions are processed by <strong>Google Play Billing</strong>, managed through
+<p>Pro purchases are processed by <strong>Google Play Billing</strong> and managed through
 <strong>RevenueCat</strong>. We never see or store your payment card details. RevenueCat processes a
-purchase identifier to verify your subscription status.</p>
+purchase identifier linked to your account ID to verify your Pro status.</p>
 
 <h2>Notifications</h2>
-<p>The app may send <strong>local notifications</strong> (e.g. a running-timer reminder and Pomodoro
-phase alerts). These are generated on your device. The app does not send marketing push notifications.</p>
+<p>The app may send <strong>local notifications</strong>: a running-timer notification, a reminder if a timer
+has been running for a long time, an optional daily reminder, Pomodoro phase alerts and a weekly summary of
+your tracked time. They are generated on your device. The app does not send marketing push notifications.</p>
 
 <h2>How we use your data</h2>
-<p>We use your data solely to provide the app's functionality: tracking time, calculating earnings,
-generating invoices and reports, and syncing your data across your sessions. We do <strong>not</strong>
-sell or share your personal data with third parties for marketing.</p>
+<p>We use your data solely to provide the app: tracking time, calculating earnings, generating invoices and
+reports, syncing your data across devices, and improving the app based on the anonymous usage events. We do
+<strong>not</strong> sell or share your personal data with third parties for marketing.</p>
 
 <h2>Data retention and deletion</h2>
-<p>Your data is kept while your account exists. You can request deletion of your account and all
-associated data at any time by emailing us at the address below. We will delete your data within 30
-days of the request.</p>
+<p>Your data is kept while your account exists. You can delete your account and all associated data at any
+time directly in the app (<em>Settings → Account → Delete account</em>). Because the account is shared, this
+also deletes your BudgetTracker and HabitTracker data. Deleting your account does not cancel a Google Play
+subscription; cancel it in Google Play. You can also request deletion by emailing us at the address below;
+we will delete your data within 30 days. When an account is deleted, its usage events are detached from it
+and can no longer be linked to you.</p>
 
 <h2>Children</h2>
 <p>The app is not directed at children under 13 and we do not knowingly collect data from them.</p>
